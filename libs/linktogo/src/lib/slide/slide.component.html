@@ -1,1 +1,11 @@
-<p>slide works!</p>
+<div class="container">
+    <div class="direction" (click)="previous()">
+        <
+    </div>
+    <ng-container *ngFor="let image of listDisplay;">
+        <a href="{{image.link}}" class="item"><img src="{{image.image}}" alt="{{image.alt}}"></a>
+    </ng-container>
+    <div class="direction" (click)="next()">
+        >
+    </div>
+  </div>
