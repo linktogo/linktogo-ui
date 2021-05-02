@@ -1,0 +1,49 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "linktogo-ui",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "NTNhOWU0ZjEtOTljOS00OGNlLWIyYjMtOTg5ZjU4OTc0MjRhfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "linktogo-ui": {
+      "tags": []
+    },
+    "linktogo-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "linktogo-ui"
+      ]
+    },
+    "linktogo": {
+      "tags": []
+    },
+    "linktogo-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "linktogo"
+      ]
+    }
+  }
+}
