@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "linktogo-ui",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "linktogo-ui": {
+      "projectType": "application",
+      "root": "apps/linktogo-ui",
+      "sourceRoot": "apps/linktogo-ui/src",
+      "prefix": "linktogo-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/linktogo-ui",
+            "index": "apps/linktogo-ui/src/index.html",
+            "main": "apps/linktogo-ui/src/main.ts",
+            "polyfills": "apps/linktogo-ui/src/polyfills.ts",
+            "tsConfig": "apps/linktogo-ui/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/linktogo-ui/src/favicon.ico",
+              "apps/linktogo-ui/src/assets"
+            ],
+            "styles": ["apps/linktogo-ui/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/linktogo-ui/src/environments/environment.ts",
+                  "with": "apps/linktogo-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "linktogo-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "linktogo-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "linktogo-ui:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/linktogo-ui/src/**/*.ts",
+              "apps/linktogo-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/linktogo-ui"],
+          "options": {
+            "jestConfig": "apps/linktogo-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "linktogo-ui-e2e": {
+      "root": "apps/linktogo-ui-e2e",
+      "sourceRoot": "apps/linktogo-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/linktogo-ui-e2e/cypress.json",
+            "tsConfig": "apps/linktogo-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "linktogo-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "linktogo-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/linktogo-ui-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
