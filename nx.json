@@ -12,9 +12,17 @@
   "npmScope": "linktogo-ui",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "NTNhOWU0ZjEtOTljOS00OGNlLWIyYjMtOTg5ZjU4OTc0MjRhfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -24,7 +32,18 @@
     },
     "linktogo-ui-e2e": {
       "tags": [],
-      "implicitDependencies": ["linktogo-ui"]
+      "implicitDependencies": [
+        "linktogo-ui"
+      ]
+    },
+    "linktogo": {
+      "tags": []
+    },
+    "linktogo-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "linktogo"
+      ]
     }
   }
 }
